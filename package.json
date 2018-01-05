@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint app; exit 0",
     "deploy": "./node_modules/.bin/gh-pages-deploy",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/",
+    "clean-sources": "rm -rf app/ .eslintrc package.json package-lock.json postcss.config.js README.md webpack.config.js"
   },
   "author": "Michał Ciołczyk",
   "license": "ISC",
@@ -25,7 +26,10 @@
     ]
   },
   "gh-pages-deploy": {
-    "staticpath": "dist"
+    "staticpath": "dist",
+    "prep": [
+      "clean-sources"
+    ]
   },
   "dependencies": {
     "classnames": "^2.2.5",
