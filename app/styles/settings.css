@@ -1,10 +1,9 @@
 .settings {
-    height: 50px;
-    width: 250px;
     margin: 0 auto;
     font-family: Arial sans-serif;
     font-weight: bold;
-    font-size: 17px;
+    text-align: center;
+    padding: 15px 0;
 }
 
 .settings select {

@@ -27,12 +27,11 @@ class Settings extends React.Component {
       blocksNumbers.push(i);
     }
     return (
-      <select onChange={this.onChangeBlocksNum}>
+      <select onChange={this.onChangeBlocksNum} defaultValue={currentBlocksNum}>
         {blocksNumbers.map(blocksNum => (
           <option
             value={blocksNum}
             key={`blocks-num-${blocksNum}`}
-            selected={blocksNum === currentBlocksNum}
           >
             {blocksNum}
           </option>

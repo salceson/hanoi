@@ -33,6 +33,7 @@ class Game extends React.Component {
   reset() {
     this.setState({
       sticks: [generateDefaultStick(this.state.blocksNum), [], []],
+      won: false,
     });
   }
 
