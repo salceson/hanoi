@@ -36,7 +36,7 @@ const config = {
 
   output: {
     filename: 'app-[hash].js',
-    publicPath: '/',
+    publicPath: PROD ? '/hanoi/' : '/',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
