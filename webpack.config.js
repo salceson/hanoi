@@ -7,12 +7,35 @@ const PROD = process.env.NODE_ENV === 'production';
 
 const cssLoader = 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]';
 
+const mainPlugins = [
+  new HtmlWebpackPlugin({
+    template: 'index.html',
+    inject: true,
+  }),
+];
+
+const prodPlugins = [
+  new ExtractTextPlugin('app-[hash].css'),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: true,
+      drop_console: true,
+    },
+  }),
+];
+
+const devPlugins = [
+  new webpack.NamedModulesPlugin(),
+];
+
+const plugins = mainPlugins.concat(PROD ? prodPlugins : devPlugins);
+
 const config = {
   context: path.resolve(__dirname, 'app'),
   entry: ['index.js'],
 
   output: {
-    filename: 'app.js',
+    filename: 'app-[hash].js',
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -28,29 +51,19 @@ const config = {
         loader: PROD ?
           ExtractTextPlugin.extract(`${cssLoader}&minimize!postcss-loader`) :
           `style-loader!${cssLoader}!postcss-loader`,
-      }
+      },
     ],
   },
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.json', '.css'],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    }),
-    new ExtractTextPlugin('app.css'),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      inject: true,
-    }),
-    new webpack.NamedModulesPlugin()
-  ],
+  plugins,
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
   },
-  devtool: '#inline-source-map',
+  devtool: PROD ? 'source-map' : 'inline-source-map',
 };
 
 module.exports = config;

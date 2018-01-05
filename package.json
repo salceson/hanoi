@@ -5,9 +5,11 @@
   "scripts": {
     "start": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server",
     "build:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack",
-    "build": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack",
+    "build": "npm run clean && ./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint app; exit 0"
+    "lint": "./node_modules/.bin/eslint app; exit 0",
+    "deploy": "./node_modules/.bin/gh-pages-deploy",
+    "clean": "rm -rf dist/"
   },
   "author": "Michał Ciołczyk",
   "license": "ISC",
@@ -21,6 +23,9 @@
       "react",
       "stage-0"
     ]
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -49,6 +54,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "gh-pages-deploy": "^0.4.2",
     "html-webpack-plugin": "^2.30.1",
     "postcss": "^6.0.15",
     "postcss-loader": "^2.0.10",
