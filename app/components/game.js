@@ -4,7 +4,7 @@ import { defaultBlocksNum } from '../config';
 import { generateDefaultStick, moveBlock } from '../utils';
 
 import GameBoard from './gameBoard';
-// import Settings from './settings';
+import Settings from './settings';
 
 import style from '../styles/game.css';
 
@@ -58,7 +58,11 @@ class Game extends React.Component {
           <p>Przenieś wszystkie krążki z lewego słupka na prawy.</p>
           <p>Możesz upuścić tylko mniejszy klocek na większy lub dowolny klocek na pusty słupek.</p>
         </div>
-        {/* <Settings onChangeBlocksNum={this.changeBlocksNum} onReset={this.reset} /> */}
+        <Settings
+          onChangeBlocksNum={this.changeBlocksNum}
+          onReset={this.reset}
+          blocksNum={blocksNum}
+        />
         <GameBoard
           blocksNum={blocksNum}
           sticks={sticks}
