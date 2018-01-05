@@ -28,6 +28,9 @@
   "gh-pages-deploy": {
     "staticpath": "dist",
     "prep": [
+      "build"
+    ],
+    "post": [
       "clean-sources"
     ]
   },
