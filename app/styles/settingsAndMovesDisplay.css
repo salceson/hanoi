@@ -6,6 +6,10 @@
     padding: 15px 0;
 }
 
-.settings select {
+.settings select, .settings input {
     margin: 0 5px;
+}
+
+.moves {
+    padding-left: 10px;
 }

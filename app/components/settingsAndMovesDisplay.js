@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 
 import { minBlocksNum, maxBlocksNum } from '../config';
 
-import style from '../styles/settings.css';
+import style from '../styles/settingsAndMovesDisplay.css';
 
-class Settings extends React.Component {
+class SettingsAndMovesDisplay extends React.Component {
   static propTypes = {
     onChangeBlocksNum: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
     blocksNum: PropTypes.number.isRequired,
+    moves: PropTypes.number.isRequired,
+    won: PropTypes.bool.isRequired,
   };
 
   constructor() {
@@ -21,7 +23,19 @@ class Settings extends React.Component {
     this.props.onChangeBlocksNum(parseInt(e.target.value, 10));
   }
 
-  renderSelect(currentBlocksNum) {
+  renderMoves() {
+    const { moves, won, blocksNum } = this.props;
+    const minMoves = (2 ** blocksNum) - 1;
+    return (
+      <span className={style.moves}>
+        Liczba ruchów: {moves}
+        {won && ` (minimalna: ${minMoves})`}
+      </span>
+    );
+  }
+
+  renderSelect() {
+    const { blocksNum: currentBlocksNum } = this.props;
     const blocksNumbers = [];
     for (let i = minBlocksNum; i <= maxBlocksNum; i += 1) {
       blocksNumbers.push(i);
@@ -41,15 +55,16 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { blocksNum, onReset } = this.props;
+    const { onReset } = this.props;
     return (
       <div className={style.settings}>
         Liczba krążków:
-        {this.renderSelect(blocksNum)}
+        {this.renderSelect()}
         <button onClick={onReset}>Od nowa</button>
+        {this.renderMoves()}
       </div>
     );
   }
 }
 
-export default Settings;
+export default SettingsAndMovesDisplay;

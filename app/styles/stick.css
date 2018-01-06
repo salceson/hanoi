@@ -4,6 +4,7 @@
     display: flex;
     flex-flow: column-reverse nowrap;
     position: relative;
+    margin-bottom: 10px;
 }
 
 .stick {
