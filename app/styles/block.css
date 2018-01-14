@@ -3,8 +3,9 @@
     margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
-    background: blue;
     z-index: 1;
+    text-align: center;
+    color: white;
 }
 
 .block:first-child {

@@ -38,9 +38,15 @@ class Block extends React.Component {
       canDrag, connectDragSource, value, blocksNum,
     } = this.props;
     const width = `calc(90% * ${value} / ${blocksNum})`;
+    const color = 255 - Math.round((value / blocksNum) * 128);
+    const background = `rgb(0, 0, ${color}`;
     const className = classNames(style.block, canDrag && style.canDrag);
 
-    return connectDragSource(<div className={className} style={{ width }} />);
+    return connectDragSource((
+      <div className={className} style={{ width, background }}>
+        {value}
+      </div>
+    ));
   }
 }
 
