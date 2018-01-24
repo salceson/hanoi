@@ -109,6 +109,7 @@ class Game extends React.Component {
         <GameBoard
           blocksNum={blocksNum}
           sticks={sticks}
+          moves={moves}
           won={this.state.won}
           canMove={this.canMove}
           move={this.move}
